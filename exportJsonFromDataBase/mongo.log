@@ -1,0 +1,132 @@
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use webdev
+switched to db webdev
+> db.movies.insert({title: 'Aliens', rating: 4.5})
+WriteResult({ "nInserted" : 1 })
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+webdev  0.000GB
+> db.movies.insert({title: 'Terminator', rating: 4.8})
+WriteResult({ "nInserted" : 1 })
+> db.movies.insert({title: 'Avatar', rating: 4.7})
+WriteResult({ "nInserted" : 1 })
+> db.movies.insert({title: 'Dune', rating: 4.9})
+WriteResult({ "nInserted" : 1 })
+> db.movies.find();
+{ "_id" : ObjectId("61a4586ad736d9342d2ae3bc"), "title" : "Aliens", "rating" : 4.5 }
+{ "_id" : ObjectId("61a4590fd736d9342d2ae3bd"), "title" : "Terminator", "rating" : 4.8 }
+{ "_id" : ObjectId("61a45925d736d9342d2ae3be"), "title" : "Avatar", "rating" : 4.7 }
+{ "_id" : ObjectId("61a45935d736d9342d2ae3bf"), "title" : "Dune", "rating" : 4.9 }
+> db.movies.find({_id : ObjectId("61a45935d736d9342d2ae3bf")})
+{ "_id" : ObjectId("61a45935d736d9342d2ae3bf"), "title" : "Dune", "rating" : 4.9 }
+> db.movies.find({title:"Aliens"})
+{ "_id" : ObjectId("61a4586ad736d9342d2ae3bc"), "title" : "Aliens", "rating" : 4.5 }
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("61a4586ad736d9342d2ae3bc"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("61a4590fd736d9342d2ae3bd"),
+	"title" : "Terminator",
+	"rating" : 4.8
+}
+{
+	"_id" : ObjectId("61a45925d736d9342d2ae3be"),
+	"title" : "Avatar",
+	"rating" : 4.7
+}
+{
+	"_id" : ObjectId("61a45935d736d9342d2ae3bf"),
+	"title" : "Dune",
+	"rating" : 4.9
+}
+> db.movies.updateOne({title: 'Avatar'},{$set: {rating: 4.9} })
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("61a4586ad736d9342d2ae3bc"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("61a4590fd736d9342d2ae3bd"),
+	"title" : "Terminator",
+	"rating" : 4.8
+}
+{
+	"_id" : ObjectId("61a45925d736d9342d2ae3be"),
+	"title" : "Avatar",
+	"rating" : 4.9
+}
+{
+	"_id" : ObjectId("61a45935d736d9342d2ae3bf"),
+	"title" : "Dune",
+	"rating" : 4.9
+}
+> db.movies.updateOne({_id: ObjectId("61a45935d736d9342d2ae3bf")}, {$set: {rating: 4.7}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("61a4586ad736d9342d2ae3bc"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("61a4590fd736d9342d2ae3bd"),
+	"title" : "Terminator",
+	"rating" : 4.8
+}
+{
+	"_id" : ObjectId("61a45925d736d9342d2ae3be"),
+	"title" : "Avatar",
+	"rating" : 4.9
+}
+{
+	"_id" : ObjectId("61a45935d736d9342d2ae3bf"),
+	"title" : "Dune",
+	"rating" : 4.7
+}
+> db.movies.deleteOne({_id: ObjectId("61a45925d736d9342d2ae3be")})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("61a4586ad736d9342d2ae3bc"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("61a4590fd736d9342d2ae3bd"),
+	"title" : "Terminator",
+	"rating" : 4.8
+}
+{
+	"_id" : ObjectId("61a45935d736d9342d2ae3bf"),
+	"title" : "Dune",
+	"rating" : 4.7
+}
+> db.tweets.insert({"topic": "Web Development",
+...                 "userName": "ReactJS",
+...                 "verified": false,
+...                 "handle": "ReactJS",
+...                 "time": "2h","tweet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+...     "attachments": {
+...       "video": "unKvMC3Y1kI"
+...     },
+... "avatar" : "https://toppng.com/uploads/preview/react-logo-icon-11609374122d9vkbptqap.png",
+...                 "image": "https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+...                 "reply" : "123",
+...                 "retweet": "234",
+...                 "like": "345",
+...                 "liked": false});
+WriteResult({ "nInserted" : 1 })
+> db.tweets.find()
+{ "_id" : ObjectId("61a5c936d736d9342d2ae3c1"), "topic" : "Web Development", "userName" : "ReactJS", "verified" : false, "handle" : "ReactJS", "time" : "2h", "tweet" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "attachments" : { "video" : "unKvMC3Y1kI" }, "avatar" : "https://toppng.com/uploads/preview/react-logo-icon-11609374122d9vkbptqap.png", "image" : "https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", "reply" : "123", "retweet" : "234", "like" : "345", "liked" : false } 
+
+

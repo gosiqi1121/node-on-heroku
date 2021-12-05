@@ -1,0 +1,6 @@
+{"_id":{"$oid":"61a4586ad736d9342d2ae3bc"},"title":"Aliens 3.0","rating":4.5}
+{"_id":{"$oid":"61a4590fd736d9342d2ae3bd"},"title":"Terminator","rating":4.8}
+{"_id":{"$oid":"61a45935d736d9342d2ae3bf"},"title":"Dune 4","rating":4.7}
+{"_id":{"$oid":"61a5b771daa4b27ddb484240"},"title":"New Movie 1","__v":0}
+{"_id":{"$oid":"61a5b772daa4b27ddb484320"},"title":"New Movie 2","__v":0}
+{"_id":{"$oid":"61a5b772daa4b27ddb4843a1"},"title":"New Movie 3","__v":0}
